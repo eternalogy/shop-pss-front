@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>商品列表</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="../../js/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="../../js/bootstrap.min.js"></script>
+    <!--Bootstrap Table-->
+    <script src="../../js/bootstrap-table.min.js"></script>
+</head>
+
+<body>
+    <div style="padding:0px; margin:0px;">
+        <ul class="breadcrumb" style="  margin:0px; ">
+            <li>商品中心</li>
+            <li>商品管理</li>
+            <li>商品列表</li>
+        </ul>
+    </div>
+    <div class="row alert alert-info" style="margin:0px; padding:3px;">
+        <form class="form-inline" id="ajaxForm">
+            <div class="form-group">
+                <label class="" for="activename">商品名称：</label>
+                <input type="text" name="kw" class="form-control" id="activename" placeholder="请输入商品名称">
+            </div>
+            <input type="submit" class="btn btn-danger" value="查询" />
+        </form>
+    </div>
+    <div class="row" style="padding:15px; padding-top:0px; ">
+        <table class="table  table-condensed table-striped" id="mytable">
+        </table>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#mytable').bootstrapTable({
+                columns: [{
+                    field: 'barCode',
+                    title: '商品条码'
+                }, {
+                    field: 'categoryName',
+                    title: '品类名称',
+                    formatter: function (value, row, index) {
+                        return row.category.categoryName
+                    }
+                }, {
+                    field: 'productName',
+                    title: '商品名称'
+                }, {
+                    field: 'salePrice',
+                    title: '销售单价(元)'
+                }, {
+                    field: 'supplierName',
+                    title: '供应商',
+                    formatter: function (value, row, index) {
+                        return row.supplier.supplierName
+                    }
+                }, {
+                    field: 'operate',
+                    formatter: 'operateFormatter',
+                    events: 'operateEvents',
+                    title: '操作'
+                }
+                ],
+                showToggle: false,
+                showRefresh: false,
+                locale: 'zh-CN',//中文支持
+                //页面需要展示的列，后端交互对象的属性
+                pagination: true,  //开启分页
+                sidePagination: 'server',
+                pageNumber: 1,//默认加载页
+                pageSize: 10,//每页数据
+                pageList: [5, 10, 15, 20],//可选的每页数据
+                queryParamsType: '',//queryParamsType的默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
+                //设置为 ''  在这种情况下传给服务器的参数为：pageSize,pageNumber */
+                queryParams: function (params) {
+                    return {
+                        pageNo: params.pageNumber,
+                        pageSize: params.pageSize
+                    }
+                },//请求服务器数据时的参数
+                url: 'http://localhost:9000/api/v2/product/', //服务器数据的加载地址
+                responseHandler: function (res) {
+                    //在ajax获取到数据，渲染表格之前，修改数据源
+                    var nres = [];
+                    nres.push({
+                        total: res.data.total,
+                        rows: res.data.list
+                    });
+                    return nres[0];
+
+                }
+            });
+        })
+    </script>
+    <script>
+        var $table = $('#mytable')
+
+        function operateFormatter(value, row, index) {
+            return [
+                '<a class="modify" href="javascript:void(0)" title="modify">',
+                '<span>修改</span>',
+                '</a>  ',
+                '<a class="remove" href="javascript:void(0)" title="remove">',
+                '<span>删除</span>',
+                '</a>'
+            ].join('')
+        }
+
+        window.operateEvents = {
+            'click .modify': function (e, value, row, index) {
+                sessionStorage.setItem("barCode", JSON.stringify(row.barCode).replace(/\"/g, ""))
+                sessionStorage.setItem("categoryName", JSON.stringify(row.categoryName))
+                sessionStorage.setItem("productName", JSON.stringify(row.productName).replace(/\"/g, ""))
+                sessionStorage.setItem("salePrice", JSON.stringify(row.salePrice))
+                sessionStorage.setItem("supplierName", JSON.stringify(row.supplierName))
+                // console.log(sessionStorage.getItem("categoryId"))
+                window.location.href = "product_modify.html"
+                // console.log(JSON.stringify(row.barCode).replace(/\"/g, ""))
+            },
+            'click .remove': function (e, value, row, index) {
+                //   console.log(JSON.stringify(row.barCode).replace(/\"/g, ""))
+                $.ajax({
+                    url: "http://localhost:9000/api/v2/product/" + JSON.stringify(row.barCode).replace(/\"/g, ""),
+                    type: "DELETE"
+                })
+                window.location.href = "product_list.html"
+
+                // $table.bootstrapTable('remove', {
+                //   field: 'id',
+                //   values: [row.id]
+                // })
+                // $.ajax({
+                //     url:
+                //     type:DELETE
+                // })
+                // alert('You click like action, row: ' + JSON.stringify(row))
+                // console.log(JSON.stringify(row.id))
+            }
+        }
+    </script>
+    <script>
+        // 模糊查询，前后端分离思路，点击查询按钮
+        // 使用ajax from绑定表单提交事件
+        // 在回调函数中使用bootstrap table调用ajax重新渲染表单
+
+        //jquery.form.js 点击表单提交按钮的事件
+        $(      //页面加载完执行
+            $("#ajaxForm").on("submit", function () {    //表单提交时监听提交事件
+                // $(this).ajaxSubmit(options);    //当前表单执行异步提交，optons 是配置提交时、提交后的相关选项
+
+                let kw = $("input[name = 'kw']").val()
+                console.log(kw)
+                $('#mytable').bootstrapTable('refresh', {
+                    showToggle: false,
+                    showRefresh: false,
+                    locale: 'zh-CN',//中文支持
+                    //页面需要展示的列，后端交互对象的属性
+                    pagination: true,  //开启分页
+                    sidePagination: 'server',
+                    pageNumber: 1,//默认加载页
+                    pageSize: 10,//每页数据
+                    pageList: [5, 10, 15, 20],//可选的每页数据
+                    queryParamsType: '',//queryParamsType的默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
+                    //设置为 ''  在这种情况下传给服务器的参数为：pageSize,pageNumber */
+                    queryParams: function (params) {
+                        return {
+                            pageNo: params.pageNumber,
+                            pageSize: params.pageSize
+                        }
+                    },//请求服务器数据时的参数
+                    url: 'http://localhost:9000/api/v2/product/search?productName=' + kw, //服务器数据的加载地址
+                    responseHandler: function (res) {
+                        //在ajax获取到数据，渲染表格之前，修改数据源
+                        var nres = [];
+                        nres.push({ total: res.data.total, rows: res.data.list });
+                        return nres[0];
+                    }
+                });
+
+                return false;   //  必须返回false，才能跳到想要的页面
+            })
+        )
+    </script>
+</body>
+
+</html>

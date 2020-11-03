@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>商品详情</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="../../js/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="../../js/bootstrap.min.js"></script>
+    <!--引入JQuery form-->
+    <script src="../../js/jquery.form.js"></script>
+</head>
+
+<body>
+<div style="padding:0px; margin:0px;">
+    <ul class="breadcrumb" style="  margin:0px; " >
+        <li><a href="#">商品中心</a></li>
+        <li>商品管理</li>
+        <li>商品详情</li>
+    </ul>
+</div>
+<form id="ajaxForm" class="form-horizontal">
+    <h5 class="page-header alert-info" style="padding:10px; margin:0px; margin-bottom:5px;">基本信息</h5>
+    <!--开始 -->
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">商品条码</label>
+                <div class="col-sm-9">
+                    <input type="text" name="barCode" class="form-control input-sm" />
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">商品名称</label>
+                <div class="col-sm-9">
+                    <input type="text" name="productName" class="form-control input-sm" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--结束 -->
+    <!--开始 -->
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">销售单价</label>
+                <div class="col-sm-9">
+                    <input type="text" name="salePrice" class="form-control input-sm" />
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">供应商</label>
+                <div class="col-sm-6">
+                    <select name="supplierId" class="form-control input-sm">
+                        <option value="1">济南九州通商贸有限公司</option>
+                        <option value="2">山东美食食品有限公司</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--结束 -->
+    <!--开始 -->
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">品类</label>
+                <div class="col-sm-6">
+                    <select name="categoryId" class="form-control input-sm">
+                        <option value="1">饮料</option>
+                        <option value="2">零食</option>
+                        <option value="3">酒水</option>
+                        <option value="4">调料</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="form-group">
+            </div>
+        </div>
+    </div>
+    <!--结束 -->
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-4">
+            <input  type="submit" class="btn btn-success" value="提交"/>
+            <a class="btn btn-warning" href="product_list.html">返回上一级</a>
+        </div>
+    </div>
+</form>
+<script>
+    // 从localstorage获取id，使用ajax查询出id和name渲染在页面上
+    let barCode = sessionStorage.getItem("barCode")
+    let categoryName = sessionStorage.getItem("categoryName")
+    let productName = sessionStorage.getItem("productName")
+    let salePrice = sessionStorage.getItem("salePrice")
+    let supplierName = sessionStorage.getItem("supplierName")
+
+    $("input[name = 'barCode']").val(barCode)
+    $("input[name = 'productName']").val(productName)
+    $("input[name = 'salePrice']").val(salePrice)
+
+
+    // $.ajax({
+    //     url: "http://localhost:9000/api/v2/category/" + categoryId,
+    //     type: "get",
+    //     success: function (data) {
+    //         $("input[name = 'id']").val(data.id)
+    //         $("input[name = 'categoryName']").val(data.categoryName)
+    //     }
+    // })
+
+    //jquery.form.js 点击表单提交按钮的事件
+    $(      //页面加载完执行
+        $("#ajaxForm").on("submit", function () {    //表单提交时监听提交事件
+            $(this).ajaxSubmit(options);    //当前表单执行异步提交，optons 是配置提交时、提交后的相关选项
+            return false;   //  必须返回false，才能跳到想要的页面
+        })
+    )
+    //配置 options 选项
+    var options = {
+        url: "http://localhost:9000/api/v2/product/" + barCode,       //提交地址：默认是form的action,如果申明,则会覆盖
+        type: "PUT",           //默认是form的method（get or post），如果申明，则会覆盖
+        success: successFun,    //提交成功后的回调函数，即成功后可以定页面跳到哪里
+        dataType: "json",       //接受服务端返回的类型
+        clearForm: true,        //成功提交后，清除所有表单元素的值
+        resetForm: true,        //成功提交后，重置所有表单元素的值
+        timeout: 3000           //设置请求时间，超过该时间后，自动退出请求，单位(毫秒)
+    }
+    //设置提交成功后返回的页面
+    function successFun(data, status) {
+        console.log(data)      //提交表单后从后台接收到的返回来的数据，我保存到了msg里
+        // $("#showForm").html("或者这里可以直接写想要显示的内容")
+        alert("修改成功")
+        window.location.href = "product_list.html"
+    }
+</script>
+</body>
+</html>

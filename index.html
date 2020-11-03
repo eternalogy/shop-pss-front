@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>进销存管理系统</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/ace.min.css" />
+    <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+    <script src="assets/js/ace-extra.min.js"></script>
+    <script src="assets/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="navbar navbar-default" id="navbar">
+        <script type="text/javascript">
+            try {
+                ace.settings.check('navbar', 'fixed')
+            } catch (e) {
+            }
+        </script>
+        <div class="navbar-container" id="navbar-container">
+            <div class="navbar-header pull-left">
+                <a href="#" class="navbar-brand">
+                    <small>XX超市进销存管理系统</small>
+                </a>
+            </div>
+            <div class="navbar-header pull-right" role="navigation">
+                <ul class="nav ace-nav">
+                    <li class="light-blue">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                            <img class="nav-user-photo" src="assets/avatars/user.jpg" />
+                            <span class="user-info">
+                                <small>张三,欢迎光临!</small>
+                            </span>
+                            <i class="icon-caret-down"></i>
+                        </a>
+                        <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                            <li>
+                                <a href="#" target="mainframe">
+                                    <i class="icon-user"></i>
+                                    个人中心
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="user.do?action=exit">
+                                    <i class="icon-off"></i>
+                                    退出
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main-container" id="main-container">
+        <script type="text/javascript">
+            try {
+                ace.settings.check('main-container', 'fixed')
+            } catch (e) {
+            }
+        </script>
+        <div class="main-container-inner">
+            <a class="menu-toggler" id="menu-toggler" href="#">
+                <span class="menu-text"></span>
+            </a>
+            <div class="sidebar" id="sidebar">
+                <script type="text/javascript">
+                    try {
+                        ace.settings.check('sidebar', 'fixed')
+                    } catch (e) {
+                    }
+                </script>
+                <ul class="nav nav-list">
+                    <li class="active">
+                        <a href="bootm.html" target="mainframe">
+                            <i class="icon-dashboard"></i>
+                            <span class="menu-text"> 首页 </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" target="mainframe" class="dropdown-toggle">
+                            <i class="icon-desktop"></i>
+                            <span class="menu-text"> 商品中心 </span>
+                            <b class="arrow icon-angle-down"></b>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="view/product/product_list.html" target="mainframe"> <i
+                                        class="icon-double-angle-right"></i> 商品管理 </a></li>
+                            <li><a href="view/category/category_list.html" target="mainframe"> <i
+                                        class="icon-double-angle-right"></i> 品类管理 </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)" target="mainframe" class="dropdown-toggle"> <i
+                                class="icon-desktop"></i> <span class="menu-text"> 进货管理 </span> <b
+                                class="arrow icon-angle-down"></b>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="view/purchase/purchase_input.html" target="mainframe"> <i
+                                        class="icon-double-angle-right"></i> 进货录入
+                                </a></li>
+                            <li><a href="view/purchase/purchase_list.html" target="mainframe"> <i
+                                        class="icon-double-angle-right"></i> 进货记录
+                                </a></li>
+                            <li><a href="view/supplier/supplier_list.html" target="mainframe"> <i
+                                        class="icon-double-angle-right"></i> 供应商
+                                </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)" target="mainframe" class="dropdown-toggle"> <i
+                                class="icon-desktop"></i> <span class="menu-text"> 销售管理 </span> <b
+                                class="arrow icon-angle-down"></b>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="view/sale/sale_list.html" target="mainframe"> <i
+                                        class="icon-double-angle-right"></i> 销售报表
+                                </a></li>
+                            <li><a href="view/sale/do_sale.html" target="mainframe"> <i
+                                        class="icon-double-angle-right"></i> 模拟销售
+                                </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)" target="mainframe" class="dropdown-toggle"> <i
+                                class="icon-desktop"></i> <span class="menu-text"> 库存管理 </span> <b
+                                class="arrow icon-angle-down"></b>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="view/stock/stock_list.html" target="mainframe"> <i
+                                        class="icon-double-angle-right"></i> 库存列表
+                                </a></li>
+                            <li><a href="view/stock/stock_recorder_list.html" target="mainframe"> <i
+                                        class="icon-double-angle-right"></i> 变更记录
+                                </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)" target="mainframe" class="dropdown-toggle"> <i
+                                class="icon-desktop"></i> <span class="menu-text"> 系统管理 </span> <b
+                                class="arrow icon-angle-down"></b>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="view/user/user_list.html" target="mainframe"> <i
+                                        class="icon-double-angle-right"></i> 用户管理
+                                </a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="sidebar-collapse" id="sidebar-collapse">
+                    <i class="icon-double-angle-left" data-icon1="icon-double-angle-left"
+                        data-icon2="icon-double-angle-right"></i></div>
+                <script type="text/javascript">
+                    try {
+                        ace.settings.check('sidebar', 'collapsed')
+                    } catch (e) {
+                    }
+                </script>
+            </div>
+            <div class="main-content" id="mains">
+                <iframe id="mainframe" name="mainframe" src="bootm.html" style="width: 100%;border: 0px;"></iframe>
+            </div>
+            <script type="text/javascript">
+                var height = jQuery(window).height() - 50;
+                jQuery("#mainframe").attr("height", "" + height + "px;");
+            </script>
+            <div class="ace-settings-container" id="ace-settings-container">
+                <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
+                    <i class="icon-cog bigger-150"></i></div>
+                <div class="ace-settings-box" id="ace-settings-box">
+                    <div>
+                        <div class="pull-left">
+                            <select id="skin-colorpicker" class="hide">
+                                <option data-skin="default" value="#438EB9">#438EB9</option>
+                                <option data-skin="skin-1" value="#222A2D">#222A2D</option>
+                                <option data-skin="skin-2" value="#C6487E">#C6487E</option>
+                                <option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+                            </select>
+                        </div>
+                        <span>&nbsp; 选择皮肤</span>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar" /> <label class="lbl"
+                            for="ace-settings-navbar"> 固定导航条</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-sidebar" /> <label
+                            class="lbl" for="ace-settings-sidebar"> 固定滑动条</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-breadcrumbs" /> <label
+                            class="lbl" for="ace-settings-breadcrumbs">固定面包屑</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" /> <label class="lbl"
+                            for="ace-settings-rtl">切换到左边</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-add-container" /> <label
+                            class="lbl" for="ace-settings-add-container"> 切换窄屏 <b></b>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"> <i
+                class="icon-double-angle-up icon-only bigger-110"></i> </a>
+    </div>
+    <script type="text/javascript">
+        if ("ontouchend" in document)
+            document
+                .write("<script src='assets/js/jquery.mobile.custom.min.js'>"
+                    + "<" + "script>");
+    </script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/typeahead-bs2.min.js"></script>
+    <script src="assets/js/excanvas.min.js"></script>
+    <script src="assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/jquery.easy-pie-chart.min.js"></script>
+    <script src="assets/js/jquery.sparkline.min.js"></script>
+    <script src="assets/js/flot/jquery.flot.min.js"></script>
+    <script src="assets/js/flot/jquery.flot.pie.min.js"></script>
+    <script src="assets/js/flot/jquery.flot.resize.min.js"></script>
+    <script src="assets/js/ace-elements.min.js"></script>
+    <script src="assets/js/ace.min.js"></script>
+
+</body>
+
+</html>
