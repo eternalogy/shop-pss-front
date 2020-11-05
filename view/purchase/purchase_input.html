@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -15,152 +16,221 @@
 </head>
 
 <body>
-<div style="padding:0px; margin:0px;">
-    <ul class="breadcrumb" style="  margin:0px; " >
-        <li>进货管理</li>
-        <li>进货录入</li>
-    </ul>
-</div>
-<form id="ajaxForm" class="form-horizontal">
-    <h5 class="page-header alert-info" style="padding:10px; margin:0px; margin-bottom:5px;">基本信息</h5>
-    <!--开始 -->
-    <div class="row">
-        <div class="col-sm-5">
-            <div class="form-group">
-                <label class="col-sm-3 control-label">商品条码</label>
-                <div class="col-sm-9">
-                    <input type="text" name="barCode" class="form-control input-sm"  />
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-5">
-            <div class="form-group">
-                <label class="col-sm-3 control-label">商品名称</label>
-                <div class="col-sm-9">
-                    <input type="text" name="productName" class="form-control input-sm" />
-                </div>
-            </div>
-        </div>
+    <div style="padding:0px; margin:0px;">
+        <ul class="breadcrumb" style="  margin:0px; ">
+            <li>进货管理</li>
+            <li>进货录入</li>
+        </ul>
     </div>
-    <!--结束 -->
-    <!--开始 -->
-    <div class="row">
-        <div class="col-sm-5">
-            <div class="form-group">
-                <label class="col-sm-3 control-label">进货单价</label>
-                <div class="col-sm-9">
-                    <input type="text" name="purchasePrice" class="form-control input-sm" />
+    <form id="ajaxForm" class="form-horizontal">
+        <h5 class="page-header alert-info" style="padding:10px; margin:0px; margin-bottom:5px;">基本信息</h5>
+        <!--开始 -->
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">商品条码</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="barCode" class="form-control input-sm" id="inputBarCode"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">商品名称</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="productName" class="form-control input-sm" id="inputProductName" />
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-5">
-            <div class="form-group">
-                <label class="col-sm-3 control-label">进货日期</label>
-                <div class="col-sm-9">
-                    <input type="text" name="purchaseDate" class="form-control input-sm" />
+        <!--结束 -->
+        <!--开始 -->
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">进货单价</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="purchasePrice" class="form-control input-sm" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">进货日期</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="purchaseDate" class="form-control input-sm" />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--结束 -->
-    <!--开始 -->
-    <div class="row">
-        <div class="col-sm-5">
-            <div class="form-group">
-                <label class="col-sm-3 control-label">生产日期</label>
-                <div class="col-sm-9">
-                    <input type="text" name="proDate" class="form-control input-sm" />
+        <!--结束 -->
+        <!--开始 -->
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">生产日期</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="proDate" class="form-control input-sm" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">保质日期</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="expDate" class="form-control input-sm" />
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-5">
-            <div class="form-group">
-                <label class="col-sm-3 control-label">保质日期</label>
-                <div class="col-sm-9">
-                    <input type="text" name="expDate" class="form-control input-sm" />
+        <!--结束 -->
+        <!--开始 -->
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">进货数量</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="count" class="form-control input-sm" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">销售单价</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="salePrice" class="form-control input-sm" />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--结束 -->
-    <!--开始 -->
-    <div class="row">
-        <div class="col-sm-5">
-            <div class="form-group">
-                <label class="col-sm-3 control-label">进货数量</label>
-                <div class="col-sm-9">
-                    <input type="text" name="count" class="form-control input-sm" />
+        <!--结束 -->
+        <!--开始 -->
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">供应商</label>
+                    <div class="col-sm-6">
+                        <select name="supplierId" id="supplierSelect" class="form-control input-sm">
+                            <!-- <option value="1">济南九州通商贸有限公司</option>
+                            <option value="2">山东美食食品有限公司</option> -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">所属品类</label>
+                    <div class="col-sm-6">
+                        <select name="categoryId" id="categorySelect" class="form-control input-sm">
+                            <!-- <option value="1">饮料</option>
+                            <option value="2">零食</option>
+                            <option value="3">酒水</option>
+                            <option value="4">调料</option> -->
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-5">
-            <div class="form-group">
-                <label class="col-sm-3 control-label">销售单价</label>
-                <div class="col-sm-9">
-                    <input type="text" name="salePrice" class="form-control input-sm" />
-                </div>
+        <!--结束 -->
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-4">
+                <input type="submit" class="btn btn-success" value="提交" />
             </div>
         </div>
-    </div>
-    <!--结束 -->
-    <!--开始 -->
-    <div class="row">
-        <div class="col-sm-5">
-            <div class="form-group">
-                <label class="col-sm-3 control-label">供应商</label>
-                <div class="col-sm-6">
-                    <select name="supplierId" class="form-control input-sm">
-                        <option value="1">济南九州通商贸有限公司</option>
-                        <option value="2">山东美食食品有限公司</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-5">
-            <div class="form-group">
-                <label class="col-sm-3 control-label">所属品类</label>
-                <div class="col-sm-6">
-                    <select name="categoryId" class="form-control input-sm">
-                        <option value="1">饮料</option>
-                        <option value="2">零食</option>
-                        <option value="3">酒水</option>
-                        <option value="4">调料</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--结束 -->
-    <div class="row">
-        <div class="col-sm-3 col-sm-offset-4">
-            <input  type="submit" class="btn btn-success" value="提交"/>
-        </div>
-    </div>
-</form>
-<script>
-    $(      //页面加载完执行
-        $("#ajaxForm").on("submit", function () {    //表单提交时监听提交事件
-            $(this).ajaxSubmit(options);    //当前表单执行异步提交，optons 是配置提交时、提交后的相关选项
-            return false;   //  必须返回false，才能跳到想要的页面
+    </form>
+    <script>
+        $(      //页面加载完执行
+            $("#ajaxForm").on("submit", function () {    //表单提交时监听提交事件
+                $(this).ajaxSubmit(options);    //当前表单执行异步提交，optons 是配置提交时、提交后的相关选项
+                return false;   //  必须返回false，才能跳到想要的页面
+            })
+        )
+        //配置 options 选项
+        var options = {
+            url: "http://localhost:9000/api/v2/purchase",       //提交地址：默认是form的action,如果申明,则会覆盖
+            type: "POST",           //默认是form的method（get or post），如果申明，则会覆盖
+            success: successFun,    //提交成功后的回调函数，即成功后可以定页面跳到哪里
+            dataType: "json",       //接受服务端返回的类型
+            clearForm: true,        //成功提交后，清除所有表单元素的值
+            resetForm: true,        //成功提交后，重置所有表单元素的值
+            timeout: 3000           //设置请求时间，超过该时间后，自动退出请求，单位(毫秒)
+        }
+        //设置提交成功后返回的页面
+        function successFun(data, status) {
+            console.log(data)      //提交表单后从后台接收到的返回来的数据，我保存到了msg里
+            // $("#showForm").html("或者这里可以直接写想要显示的内容")
+            alert("进货成功")
+            window.location.href = "input_result.html"
+        }
+    </script>
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url: "http://localhost:9000/api/v2/supplier?pageNo=1&pageSize=100",
+                type: "GET",
+                async: false,
+                dataType: "json",
+                success: getSuppliersSuccessFun,
+                error: function(){
+                    console.log("拉取供应商错误")
+                }
+            })
+
+            $.ajax({
+                url: "http://localhost:9000/api/v2/category?pageNo=1&pageSize=100",
+                type: "GET",
+                async: false,
+                dataType: "json",
+                success: getCategoriesSuccessFun,
+                error: function(){
+                    console.log("拉取供应商错误")
+                }
+            })
+        
+        function getSuppliersSuccessFun(data){
+            // console.log(data.list)
+            let suppliersArr = Array.from(data.list)
+            for(var i = 0; i < suppliersArr.length; i++){
+                $('#supplierSelect').append("<option value="+data.list[i].id+">" + data.list[i].supplierName + "</option>")
+            }
+        }
+
+        function getCategoriesSuccessFun(data){
+            let categoriesArr = Array.from(data.data.list)
+            console.log(categoriesArr)
+            for(var i = 0; i< categoriesArr.length; i++){
+                $('#categorySelect').append("<option value="+data.data.list[i].id+">" + data.data.list[i].categoryName + "</option>")
+            }
+        }
         })
-    )
-    //配置 options 选项
-    var options = {
-        url: "http://localhost:9000/api/v2/purchase",       //提交地址：默认是form的action,如果申明,则会覆盖
-        type: "POST",           //默认是form的method（get or post），如果申明，则会覆盖
-        success: successFun,    //提交成功后的回调函数，即成功后可以定页面跳到哪里
-        dataType: "json",       //接受服务端返回的类型
-        clearForm: true,        //成功提交后，清除所有表单元素的值
-        resetForm: true,        //成功提交后，重置所有表单元素的值
-        timeout: 3000           //设置请求时间，超过该时间后，自动退出请求，单位(毫秒)
-    }
-    //设置提交成功后返回的页面
-    function successFun(data, status) {
-        console.log(data)      //提交表单后从后台接收到的返回来的数据，我保存到了msg里
-        // $("#showForm").html("或者这里可以直接写想要显示的内容")
-        alert("进货成功")
-        window.location.href = "input_result.html"
-    }
-</script>
+    </script>
+    <!--输入商品条码后，显示商品名称，并锁定商品名称不可修改-->
+    <script>
+        // 如果商品条码不为空，且失去焦点，则请求根据条码查询商品接口
+        // 若查到商品信息，则显示商品名称，并锁定商品名称不可修改
+        // 若商品信息为空，则不执行任何操作
+        $('#inputBarCode').blur(function(){
+            let barCode = $('#inputBarCode').val()
+            $.ajax({
+                url: "http://localhost:9000/api/v2/product/" + barCode,
+                type: "GET",
+                async: false,
+                dataType: "json",
+                success: getProductByBarCode,
+                error: function(){
+                    console.log("error")
+                }
+            })
+        })
+        function getProductByBarCode(data){
+            if(data.data == null){
+                console.log('空的')
+            }else{
+                console.log(data.data)
+                $('#inputProductName').val(data.data.productName)
+                $('#inputProductName').attr("disabled", true)
+            }
+        }
+    </script>
 </body>
 </html>
