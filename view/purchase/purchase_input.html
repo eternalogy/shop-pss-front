@@ -58,7 +58,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">进货日期</label>
                     <div class="col-sm-9">
-                        <input type="text" name="purchaseDate" class="form-control input-sm" />
+                        <input type="date" name="purchaseDate" class="form-control input-sm" />
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">生产日期</label>
                     <div class="col-sm-9">
-                        <input type="text" name="proDate" class="form-control input-sm" />
+                        <input type="date" name="proDate" class="form-control input-sm" type="date" />
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">保质日期</label>
                     <div class="col-sm-9">
-                        <input type="text" name="expDate" class="form-control input-sm" />
+                        <input type="date" name="expDate" class="form-control input-sm" type="date" />
                     </div>
                 </div>
             </div>
@@ -189,15 +189,14 @@
         
         function getSuppliersSuccessFun(data){
             // console.log(data.list)
-            let suppliersArr = Array.from(data.list)
+            let suppliersArr = Array.from(data.data.list)
             for(var i = 0; i < suppliersArr.length; i++){
-                $('#supplierSelect').append("<option value="+data.list[i].id+">" + data.list[i].supplierName + "</option>")
+                $('#supplierSelect').append("<option value="+data.data.list[i].id+">" + data.data.list[i].supplierName + "</option>")
             }
         }
 
         function getCategoriesSuccessFun(data){
             let categoriesArr = Array.from(data.data.list)
-            console.log(categoriesArr)
             for(var i = 0; i< categoriesArr.length; i++){
                 $('#categorySelect').append("<option value="+data.data.list[i].id+">" + data.data.list[i].categoryName + "</option>")
             }
