@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>进销存管理系统</title>
+    <title>生鲜超市进销存管理系统</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -80,13 +80,13 @@
                     <li class="active">
                         <a href="bootm.html" target="mainframe">
                             <i class="icon-dashboard"></i>
-                            <span class="menu-text"> 首页 </span>
+                            <span class="menu-text"> 数据大屏 </span>
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)" target="mainframe" class="dropdown-toggle">
                             <i class="icon-desktop"></i>
-                            <span class="menu-text"> 商品中心 </span>
+                            <span class="menu-text"> 商品管理 </span>
                             <b class="arrow icon-angle-down"></b>
                         </a>
                         <ul class="submenu">
@@ -97,7 +97,7 @@
                         </ul>
                     </li>
                     <li><a href="javascript:void(0)" target="mainframe" class="dropdown-toggle"> <i
-                                class="icon-desktop"></i> <span class="menu-text"> 进货管理 </span> <b
+                                class="icon-desktop"></i> <span class="menu-text"> 采购管理 </span> <b
                                 class="arrow icon-angle-down"></b>
                         </a>
                         <ul class="submenu">
@@ -148,6 +148,46 @@
                                 </a></li>
                         </ul>
                     </li>
+                    <li><a href="javascript:void(0)" target="mainframe" class="dropdown-toggle"> <i
+                                class="icon-desktop"></i> <span class="menu-text"> 人事管理 </span> <b
+                                class="arrow icon-angle-down"></b>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="view/user/user_list.html" target="mainframe"> <i
+                                        class="icon-double-angle-right"></i> 用户管理
+                                </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)" target="mainframe" class="dropdown-toggle"> <i
+                                class="icon-desktop"></i> <span class="menu-text"> 配送管理 </span> <b
+                                class="arrow icon-angle-down"></b>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="view/user/user_list.html" target="mainframe"> <i
+                                        class="icon-double-angle-right"></i> 用户管理
+                                </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)" target="mainframe" class="dropdown-toggle"> <i
+                                class="icon-desktop"></i> <span class="menu-text"> 客户关系 </span> <b
+                                class="arrow icon-angle-down"></b>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="view/user/user_list.html" target="mainframe"> <i
+                                        class="icon-double-angle-right"></i> 用户管理
+                                </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)" target="mainframe" class="dropdown-toggle"> <i
+                                class="icon-desktop"></i> <span class="menu-text"> 采购管理 </span> <b
+                                class="arrow icon-angle-down"></b>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="view/user/user_list.html" target="mainframe"> <i
+                                        class="icon-double-angle-right"></i> 用户管理
+                                </a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <div class="sidebar-collapse" id="sidebar-collapse">
                     <i class="icon-double-angle-left" data-icon1="icon-double-angle-left"
@@ -166,7 +206,7 @@
                 var height = jQuery(window).height() - 50;
                 jQuery("#mainframe").attr("height", "" + height + "px;");
             </script>
-            <div class="ace-settings-container" id="ace-settings-container">
+            <!-- <div class="ace-settings-container" id="ace-settings-container">
                 <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
                     <i class="icon-cog bigger-150"></i></div>
                 <div class="ace-settings-box" id="ace-settings-box">
@@ -203,7 +243,7 @@
                         </label>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"> <i
                 class="icon-double-angle-up icon-only bigger-110"></i> </a>
