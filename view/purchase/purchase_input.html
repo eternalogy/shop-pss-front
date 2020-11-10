@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">商品条码</label>
                     <div class="col-sm-9">
-                        <input type="text" name="barCode" class="form-control input-sm" id="inputBarCode"/>
+                        <input type="text" name="barCode" class="form-control input-sm" id="inputBarCode" />
                     </div>
                 </div>
             </div>
@@ -111,8 +111,6 @@
                     <label class="col-sm-3 control-label">供应商</label>
                     <div class="col-sm-6">
                         <select name="supplierId" id="supplierSelect" class="form-control input-sm">
-                            <!-- <option value="1">济南九州通商贸有限公司</option>
-                            <option value="2">山东美食食品有限公司</option> -->
                         </select>
                     </div>
                 </div>
@@ -122,11 +120,45 @@
                     <label class="col-sm-3 control-label">所属品类</label>
                     <div class="col-sm-6">
                         <select name="categoryId" id="categorySelect" class="form-control input-sm">
-                            <!-- <option value="1">饮料</option>
-                            <option value="2">零食</option>
-                            <option value="3">酒水</option>
-                            <option value="4">调料</option> -->
                         </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">净含量</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="netContent" id="netContentInput" class="form-control input-sm" />
+                    </div>
+                    <div class="col-sm-3">
+                        <select id="netContentSelect" class="form-control input-sm">
+                            <option value="g">（克）g</option>
+                            <option value="kg">（千克）kg</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">储存条件</label>
+                    <div class="col-sm-6">
+                        <select name="storageCondition" class="form-control input-sm">
+                            <option value="常温">常温</option>
+                            <option value="保鲜">保鲜</option>
+                            <option value="冷冻">冷冻</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">产地</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="placeOfOrigin" class="form-control input-sm" />
                     </div>
                 </div>
             </div>
@@ -164,14 +196,14 @@
         }
     </script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $.ajax({
                 url: "http://localhost:9000/api/v2/supplier?pageNo=1&pageSize=100",
                 type: "GET",
                 async: false,
                 dataType: "json",
                 success: getSuppliersSuccessFun,
-                error: function(){
+                error: function () {
                     console.log("拉取供应商错误")
                 }
             })
@@ -182,25 +214,25 @@
                 async: false,
                 dataType: "json",
                 success: getCategoriesSuccessFun,
-                error: function(){
+                error: function () {
                     console.log("拉取供应商错误")
                 }
             })
-        
-        function getSuppliersSuccessFun(data){
-            // console.log(data.list)
-            let suppliersArr = Array.from(data.data.list)
-            for(var i = 0; i < suppliersArr.length; i++){
-                $('#supplierSelect').append("<option value="+data.data.list[i].id+">" + data.data.list[i].supplierName + "</option>")
-            }
-        }
 
-        function getCategoriesSuccessFun(data){
-            let categoriesArr = Array.from(data.data.list)
-            for(var i = 0; i< categoriesArr.length; i++){
-                $('#categorySelect').append("<option value="+data.data.list[i].id+">" + data.data.list[i].categoryName + "</option>")
+            function getSuppliersSuccessFun(data) {
+                // console.log(data.list)
+                let suppliersArr = Array.from(data.data.list)
+                for (var i = 0; i < suppliersArr.length; i++) {
+                    $('#supplierSelect').append("<option value=" + data.data.list[i].id + ">" + data.data.list[i].supplierName + "</option>")
+                }
             }
-        }
+
+            function getCategoriesSuccessFun(data) {
+                let categoriesArr = Array.from(data.data.list)
+                for (var i = 0; i < categoriesArr.length; i++) {
+                    $('#categorySelect').append("<option value=" + data.data.list[i].id + ">" + data.data.list[i].categoryName + "</option>")
+                }
+            }
         })
     </script>
     <!--输入商品条码后，显示商品名称，并锁定商品名称不可修改-->
@@ -208,7 +240,7 @@
         // 如果商品条码不为空，且失去焦点，则请求根据条码查询商品接口
         // 若查到商品信息，则显示商品名称，并锁定商品名称不可修改
         // 若商品信息为空，则不执行任何操作
-        $('#inputBarCode').blur(function(){
+        $('#inputBarCode').blur(function () {
             let barCode = $('#inputBarCode').val()
             $.ajax({
                 url: "http://localhost:9000/api/v2/product/" + barCode,
@@ -216,20 +248,43 @@
                 async: false,
                 dataType: "json",
                 success: getProductByBarCode,
-                error: function(){
+                error: function () {
                     console.log("error")
                 }
             })
         })
-        function getProductByBarCode(data){
-            if(data.data == null){
+        function getProductByBarCode(data) {
+            if (data.data == null) {
                 console.log('空的')
-            }else{
+            } else {
                 console.log(data.data)
                 $('#inputProductName').val(data.data.productName)
                 $('#inputProductName').attr("disabled", true)
             }
         }
     </script>
+    <script>
+        $('#netContentSelect').change(function () {
+            //如果是kg，切换g时
+            if ($('#netContentInput').val().indexOf("kg") != -1) {
+                let oldString = $('#netContentInput').val()
+                console.log(oldString)
+                let newString = oldString.substr(0, oldString.length - 2);
+                console.log(newString)
+                $('#netContentInput').val(newString + "g")
+            } else if ($('#netContentInput').val().indexOf("g") != -1 && $('#netContentInput').val().indexOf("kg") == -1) {
+                //当输入的是g，切换kg时
+                let oldString = $('#netContentInput').val()
+                let newString = oldString.substr(0, oldString.length - 1);
+                $('#netContentInput').val(newString + "kg")
+            }else if($('#netContentInput').val() == ""){
+
+            }else {
+                //如果不包含g，切换时，加上g
+                $('#netContentInput').val($('#netContentInput').val() + $('#netContentSelect').val())
+            }
+        })
+    </script>
 </body>
+
 </html>

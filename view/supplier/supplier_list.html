@@ -72,7 +72,7 @@
                 responseHandler: function (res) {
                     //在ajax获取到数据，渲染表格之前，修改数据源
                     var nres = [];
-                    nres.push({ total: res.total, rows: res.list });
+                    nres.push({ total: res.data.total, rows: res.data.list });
                     return nres[0];
                 }
             });
